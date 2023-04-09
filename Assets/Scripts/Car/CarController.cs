@@ -8,9 +8,19 @@ public class CarController : MonoBehaviour
     public float brakeStrength = 100f; // The speed at which the car turns
 
     private Rigidbody rb;
+    private Transform[] wheelTransforms = null; //wheels transforms
 
     private void Start()
     {
+        wheelTransforms = new Transform[4];
+        // Get the children of a GameObject
+        Transform parentTransform = gameObject.transform;
+        int childCount = parentTransform.childCount;
+        for (int i = 0; i < childCount; i++)
+        {
+            Transform childTransform = parentTransform.GetChild(i);
+            wheelTransforms[i] = childTransform;
+        }
         rb = GetComponent<Rigidbody>();
     }
 
@@ -25,11 +35,22 @@ public class CarController : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
         bool brakeInput = Input.GetButton("Jump");
 
+        // Check if any of the wheels are not on the ground
+        bool isOnGround = true;
+        foreach (Transform wheelTransform in wheelTransforms)
+        {
+            if (!IsWheelOnGround(wheelTransform, 2))
+            {
+                isOnGround = false;
+                break;
+            }
+        }
+
+        // Calculate the acceleration of the ride based on vertical input, only if all wheels are on the ground
+        float accelerationAmount = isOnGround ? -verticalInput * acceleration * Time.deltaTime : 0f;
+
         // Get the ride's forward direction in local space
         Vector3 rideForward = transform.TransformDirection(Vector3.forward);
-
-        // Calculate the acceleration of the ride based on vertical input
-        float accelerationAmount = -verticalInput * acceleration * Time.deltaTime;
 
         // Limit the ride's speed to the maximum speed
         float currentSpeed = Vector3.Dot(rb.velocity, rideForward);
@@ -55,4 +76,17 @@ public class CarController : MonoBehaviour
         Quaternion turnRotation = Quaternion.Euler(0f, turnAmount, 0f);
         rb.MoveRotation(rb.rotation * turnRotation);
     }
+
+    private bool IsWheelOnGround(Transform wheelTransform, float maxDistance)
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(wheelTransform.position, -wheelTransform.up, out hit, maxDistance))
+            // Check if the hit object has a tag indicating it is the ground
+            if (hit.collider.CompareTag("Ground"))
+                return true;
+
+        return false;
+    }
+
+
 }
