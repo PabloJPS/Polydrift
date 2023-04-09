@@ -2532,24 +2532,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5d3c5e0f5f32c141911c08deee9e94d, type: 3}
---- !u!1 &388972208 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8049907621329533821, guid: 419b5557461398443a4b99d9496015fc, type: 3}
-  m_PrefabInstance: {fileID: 1801735782}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &388972209
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 388972208}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 15.000005, y: 0.100001, z: 15.000005}
-  m_Center: {x: 0, y: 0.0500005, z: 0}
 --- !u!1001 &399647043
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2560,6 +2542,10 @@ PrefabInstance:
     - target: {fileID: 8483781631078631208, guid: 87e0acbd6ddf7814097e377d5a5c716d, type: 3}
       propertyPath: m_Name
       value: Track_Fence_line_type_01_15m_free_obs (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8483781631078631208, guid: 87e0acbd6ddf7814097e377d5a5c716d, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 9148960239488163218, guid: 87e0acbd6ddf7814097e377d5a5c716d, type: 3}
       propertyPath: m_RootOrder
@@ -3904,7 +3890,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 614435274}
-  m_LocalRotation: {x: 0.115817964, y: -0.703579, z: 0.11790404, w: 0.6911305}
+  m_LocalRotation: {x: 0.11581796, y: -0.703579, z: 0.11790402, w: 0.6911305}
   m_LocalPosition: {x: 3.170001, y: 3.901114, z: 17.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7642,6 +7628,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 484e95a1def424c4b9f1ad821e0c226a, type: 3}
+--- !u!1 &1168194243 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8483781631078631208, guid: 87e0acbd6ddf7814097e377d5a5c716d, type: 3}
+  m_PrefabInstance: {fileID: 1227137809}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1168194248
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168194243}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3927358, y: 1.2760389, z: 15.000004}
+  m_Center: {x: -0.04946038, y: 0.63801944, z: -2.3322684e-15}
 --- !u!1001 &1173035119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8211,6 +8215,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7112750754122813761, guid: 87e0acbd6ddf7814097e377d5a5c716d, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8483781631078631208, guid: 87e0acbd6ddf7814097e377d5a5c716d, type: 3}
       propertyPath: m_Name
       value: Track_Fence_line_type_01_15m_free_obs (5)
@@ -8218,6 +8226,10 @@ PrefabInstance:
     - target: {fileID: 9148960239488163218, guid: 87e0acbd6ddf7814097e377d5a5c716d, type: 3}
       propertyPath: m_RootOrder
       value: 41
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148960239488163218, guid: 87e0acbd6ddf7814097e377d5a5c716d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9148960239488163218, guid: 87e0acbd6ddf7814097e377d5a5c716d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10683,6 +10695,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1751246299991953885, guid: a14ee6ec37f94dc47934977408f877a3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751246299991953885, guid: a14ee6ec37f94dc47934977408f877a3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751246299991953885, guid: a14ee6ec37f94dc47934977408f877a3, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751246299991953885, guid: a14ee6ec37f94dc47934977408f877a3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.5019474
       objectReference: {fileID: 0}
@@ -10737,14 +10761,14 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1653112103}
   serializedVersion: 2
-  m_Mass: 10
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 1000
+  m_Drag: 0.5
+  m_AngularDrag: 0.5
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!4 &1653112107 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1751246299991953885, guid: a14ee6ec37f94dc47934977408f877a3, type: 3}
@@ -10775,8 +10799,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8dada0a0f4343b4d97be02db55dbf40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 30
-  acceleration: 10
+  maxSpeed: 1000
+  acceleration: 200
   turningSpeed: 100
 --- !u!1001 &1655153766
 PrefabInstance:
@@ -11644,9 +11668,21 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4180479327332058295, guid: 419b5557461398443a4b99d9496015fc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7276925260861940167, guid: 419b5557461398443a4b99d9496015fc, type: 3}
       propertyPath: m_RootOrder
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276925260861940167, guid: 419b5557461398443a4b99d9496015fc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276925260861940167, guid: 419b5557461398443a4b99d9496015fc, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7276925260861940167, guid: 419b5557461398443a4b99d9496015fc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11691,6 +11727,10 @@ PrefabInstance:
     - target: {fileID: 8049907621329533821, guid: 419b5557461398443a4b99d9496015fc, type: 3}
       propertyPath: m_Name
       value: Track_line_type_01_start_finish_15m_free_obs (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8410463666442459816, guid: 419b5557461398443a4b99d9496015fc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 419b5557461398443a4b99d9496015fc, type: 3}
@@ -13488,7 +13528,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2121750342}
-  m_LocalRotation: {x: 0.115817964, y: -0.703579, z: 0.11790404, w: 0.6911305}
+  m_LocalRotation: {x: 0.11581796, y: -0.703579, z: 0.11790402, w: 0.6911305}
   m_LocalPosition: {x: 3.170001, y: 3.901114, z: 17.64}
   m_LocalScale: {x: 2.1150858, y: 2.1150858, z: -3.0873907}
   m_ConstrainProportionsScale: 0
