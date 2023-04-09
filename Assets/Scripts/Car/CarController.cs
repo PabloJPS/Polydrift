@@ -12,9 +12,6 @@ public class CarController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.mass = 9000; // Set the mass of the Rigidbody component to 1000
-        rb.drag = 0f; // Set the drag value of the Rigidbody component
-        rb.angularDrag = 0f; // Set the angular drag value of the Rigidbody component
     }
 
     private void Update()

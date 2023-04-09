@@ -3932,6 +3932,7 @@ MonoBehaviour:
   maxSpeed: 30
   acceleration: 10
   turningSpeed: 100
+  brakeStrength: 100
 --- !u!1001 &648305336
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4136,6 +4137,7 @@ MonoBehaviour:
   maxSpeed: 30
   acceleration: 10
   turningSpeed: 100
+  brakeStrength: 100
 --- !u!1001 &696767849
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10761,7 +10763,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1653112103}
   serializedVersion: 2
-  m_Mass: 1000
+  m_Mass: 100
   m_Drag: 0.5
   m_AngularDrag: 0.5
   m_UseGravity: 1
@@ -10799,9 +10801,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8dada0a0f4343b4d97be02db55dbf40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 1000
-  acceleration: 200
+  maxSpeed: 800
+  acceleration: 100
   turningSpeed: 100
+  brakeStrength: 50
 --- !u!1001 &1655153766
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12052,6 +12055,7 @@ MonoBehaviour:
   maxSpeed: 30
   acceleration: 10
   turningSpeed: 100
+  brakeStrength: 100
 --- !u!1001 &1852610862
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13268,6 +13272,7 @@ MonoBehaviour:
   maxSpeed: 30
   acceleration: 10
   turningSpeed: 100
+  brakeStrength: 100
 --- !u!1001 &2112233581
 PrefabInstance:
   m_ObjectHideFlags: 0
