@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CarController : MonoBehaviour
 {
@@ -8,6 +11,8 @@ public class CarController : MonoBehaviour
     public float acceleration = 300f; // The acceleration of the car
     public float turningSpeed = 100f; // The speed at which the car turns
     public float brakeStrength = 100f; // The speed at which the car turns
+    public Button resetButton;
+    public TextMeshProUGUI resetButtonText;
     public int raceRequiredTracks;
 
     private Rigidbody rb;
@@ -15,10 +20,22 @@ public class CarController : MonoBehaviour
     private HashSet<string> iteratedTracks = new HashSet<string>();
     private string startTrack;
     private bool raceFinished = false;
+    private Color resetButtonColor;
+    private Color resetButtonTextColor;
 
     private void Start()
     {
         UnitySystemConsoleRedirector.Redirect();
+
+        resetButton.onClick.AddListener(()=> {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        });
+
+        resetButtonColor = resetButton.image.color;
+        resetButtonTextColor = resetButtonText.color;
+
+        MakeButtonInvisible(resetButton);
+        MakeButtonTextInvisible(resetButtonText);
 
         startTrack = string.Empty;
         raceFinished = false;
@@ -56,6 +73,9 @@ public class CarController : MonoBehaviour
             if (!IsWheelOnGround(wheelTransform, 2))
             {
                 isOnGround = false;
+                //Just a test, the button should appear when all wheels are not on the ground
+                MakeButtonVisible(resetButton, resetButtonColor);
+                MakeButtonTextVisible(resetButtonText, resetButtonTextColor);
                 break;
             }
         }
@@ -126,5 +146,31 @@ public class CarController : MonoBehaviour
         Console.WriteLine($"Race finished");
     }
 
+    //Makes a button invisible and not enabled
+    void MakeButtonInvisible(Button button)
+    {
+        //Making the button invisible and not interactable
+        Color resetButtonColor = button.image.color;
+        resetButtonColor.a = 0f;
 
+        button.interactable = false;
+        button.image.color = resetButtonColor;
+    }
+
+    void MakeButtonTextInvisible(TextMeshProUGUI buttonText)
+    {
+        Color textColor = buttonText.color;
+        textColor.a = 0f;
+        buttonText.color = textColor;
+    }
+
+    void MakeButtonVisible(Button button, Color color)
+    {
+        button.interactable = true;
+        button.image.color = color;
+    }
+    void MakeButtonTextVisible(TextMeshProUGUI buttonText, Color color)
+    {
+        buttonText.color = color;
+    }
 }
