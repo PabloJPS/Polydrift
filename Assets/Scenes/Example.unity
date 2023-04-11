@@ -3953,6 +3953,7 @@ MonoBehaviour:
   acceleration: 10
   turningSpeed: 100
   brakeStrength: 100
+  raceRequiredTracks: 0
 --- !u!1001 &648305336
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4162,6 +4163,7 @@ MonoBehaviour:
   acceleration: 10
   turningSpeed: 100
   brakeStrength: 100
+  raceRequiredTracks: 0
 --- !u!1001 &696767849
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8279,7 +8281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9148960239488163218, guid: 87e0acbd6ddf7814097e377d5a5c716d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9148960239488163218, guid: 87e0acbd6ddf7814097e377d5a5c716d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10861,6 +10863,7 @@ MonoBehaviour:
   acceleration: 100
   turningSpeed: 100
   brakeStrength: 50
+  raceRequiredTracks: 23
 --- !u!1001 &1655153766
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12136,6 +12139,7 @@ MonoBehaviour:
   acceleration: 10
   turningSpeed: 100
   brakeStrength: 100
+  raceRequiredTracks: 0
 --- !u!1001 &1852610862
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13353,6 +13357,7 @@ MonoBehaviour:
   acceleration: 10
   turningSpeed: 100
   brakeStrength: 100
+  raceRequiredTracks: 0
 --- !u!1001 &2112233581
 PrefabInstance:
   m_ObjectHideFlags: 0

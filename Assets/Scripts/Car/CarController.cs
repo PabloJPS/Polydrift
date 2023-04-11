@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CarController : MonoBehaviour
@@ -6,12 +8,21 @@ public class CarController : MonoBehaviour
     public float acceleration = 300f; // The acceleration of the car
     public float turningSpeed = 100f; // The speed at which the car turns
     public float brakeStrength = 100f; // The speed at which the car turns
+    public int raceRequiredTracks;
 
     private Rigidbody rb;
     private Transform[] wheelTransforms = null; //wheels transforms
+    private HashSet<string> iteratedTracks = new HashSet<string>();
+    private string startTrack;
+    private bool raceFinished = false;
 
     private void Start()
     {
+        UnitySystemConsoleRedirector.Redirect();
+
+        startTrack = string.Empty;
+        raceFinished = false;
+
         wheelTransforms = new Transform[4];
         // Get the children of a GameObject
         Transform parentTransform = gameObject.transform;
@@ -31,6 +42,9 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (raceFinished)
+            return;
+
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
         bool brakeInput = Input.GetButton("Jump");
@@ -86,6 +100,30 @@ public class CarController : MonoBehaviour
                 return true;
 
         return false;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        //Save track names
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            var trackName = collision.gameObject.name;
+            var added = iteratedTracks.Add(trackName);
+            //Saving the name of the first track
+            if (startTrack.Equals(string.Empty))
+                startTrack = trackName;
+
+            if (trackName.Equals(startTrack) && iteratedTracks.Count == raceRequiredTracks)
+                RaceFinished();
+
+            Console.WriteLine($"Track Count: {iteratedTracks.Count}");
+        }
+    }
+
+    private void RaceFinished()
+    {
+        raceFinished = true;
+        Console.WriteLine($"Race finished");
     }
 
 
