@@ -19,11 +19,11 @@ public class CarController : MonoBehaviour
     private Transform[] wheelTransforms = null; //wheels transforms
     private HashSet<string> iteratedTracks = new HashSet<string>();
     private string startTrack;
-    private bool raceFinished = false;
+    private bool raceFinished;
     private Color resetButtonColor;
     private Color resetButtonTextColor;
     private bool hadAccident; //Car 180 degrees rotated and touching the ground 
-    //private bool hadAccident; //Car 
+    private bool outOfMap; //Car in the ground and with four wheels on a banned tagged area
 
     private void Start()
     {
@@ -41,6 +41,8 @@ public class CarController : MonoBehaviour
 
         startTrack = string.Empty;
         raceFinished = false;
+        hadAccident = false;
+        outOfMap = false;
 
         wheelTransforms = new Transform[4];
         // Get the children of a GameObject
@@ -61,27 +63,24 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (hadAccident)
-            return;
-
-        if (raceFinished)
+        if (hadAccident || raceFinished || outOfMap)
             return;
 
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
         bool brakeInput = Input.GetButton("Jump");
 
-        // Check if any of the wheels are not on the ground
-        bool isOnGround = true;
-        foreach (Transform wheelTransform in wheelTransforms) {
-            if (!IsWheelOnGround(wheelTransform, 2)) {
-                isOnGround = false;
+        bool allWheelsOnGround = true;
+        //All wheels on ground
+        foreach (Transform wheel in wheelTransforms) {
+            if (!IsWheelOnGround(wheel, 0.5f)) {
+                allWheelsOnGround = false;
                 break;
             }
         }
 
         // Calculate the acceleration of the ride based on vertical input, only if all wheels are on the ground
-        float accelerationAmount = isOnGround ? -verticalInput * acceleration * Time.deltaTime : 0f;
+        float accelerationAmount =  allWheelsOnGround ? -verticalInput * acceleration * Time.deltaTime : 0;
 
         // Get the ride's forward direction in local space
         Vector3 rideForward = transform.TransformDirection(Vector3.forward);
@@ -125,20 +124,29 @@ public class CarController : MonoBehaviour
     private bool HasCarHadAccident()
     {
         float angle = Vector3.Angle(transform.up, Vector3.up);
-        return angle >= 180f;
+        return angle >= 70f;
     }
 
-    void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
-        //Save track names
+        //Accident?
+        if (HasCarHadAccident())
+        {
+            hadAccident = true;
+            MakeButtonVisible(resetButton, resetButtonColor);
+            MakeButtonTextVisible(resetButtonText, resetButtonTextColor);
+        }
+
+        if (collision.gameObject.CompareTag("Banned")) {
+            //Out of map?
+            outOfMap = true;
+            MakeButtonVisible(resetButton, resetButtonColor);
+            MakeButtonTextVisible(resetButtonText, resetButtonTextColor);
+        }
+
         if (collision.gameObject.CompareTag("Ground"))
         {
-            if (HasCarHadAccident()) {
-                hadAccident = true;
-                MakeButtonVisible(resetButton, resetButtonColor);
-                MakeButtonTextVisible(resetButtonText, resetButtonTextColor);
-            }
-
+            //Race finished?
             var trackName = collision.gameObject.name;
             var added = iteratedTracks.Add(trackName);
             //Saving the name of the first track
@@ -147,8 +155,6 @@ public class CarController : MonoBehaviour
 
             if (trackName.Equals(startTrack) && iteratedTracks.Count == raceRequiredTracks)
                 RaceFinished();
-
-            Console.WriteLine($"Track Count: {iteratedTracks.Count}");
         }
     }
 
