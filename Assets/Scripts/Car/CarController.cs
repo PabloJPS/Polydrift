@@ -22,6 +22,8 @@ public class CarController : MonoBehaviour
     private bool raceFinished = false;
     private Color resetButtonColor;
     private Color resetButtonTextColor;
+    private bool hadAccident; //Car 180 degrees rotated and touching the ground 
+    //private bool hadAccident; //Car 
 
     private void Start()
     {
@@ -59,6 +61,9 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (hadAccident)
+            return;
+
         if (raceFinished)
             return;
 
@@ -68,14 +73,9 @@ public class CarController : MonoBehaviour
 
         // Check if any of the wheels are not on the ground
         bool isOnGround = true;
-        foreach (Transform wheelTransform in wheelTransforms)
-        {
-            if (!IsWheelOnGround(wheelTransform, 2))
-            {
+        foreach (Transform wheelTransform in wheelTransforms) {
+            if (!IsWheelOnGround(wheelTransform, 2)) {
                 isOnGround = false;
-                //Just a test, the button should appear when all wheels are not on the ground
-                MakeButtonVisible(resetButton, resetButtonColor);
-                MakeButtonTextVisible(resetButtonText, resetButtonTextColor);
                 break;
             }
         }
@@ -122,11 +122,23 @@ public class CarController : MonoBehaviour
         return false;
     }
 
+    private bool HasCarHadAccident()
+    {
+        float angle = Vector3.Angle(transform.up, Vector3.up);
+        return angle >= 180f;
+    }
+
     void OnCollisionEnter(Collision collision)
     {
         //Save track names
         if (collision.gameObject.CompareTag("Ground"))
         {
+            if (HasCarHadAccident()) {
+                hadAccident = true;
+                MakeButtonVisible(resetButton, resetButtonColor);
+                MakeButtonTextVisible(resetButtonText, resetButtonTextColor);
+            }
+
             var trackName = collision.gameObject.name;
             var added = iteratedTracks.Add(trackName);
             //Saving the name of the first track
