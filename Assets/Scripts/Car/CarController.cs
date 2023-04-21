@@ -15,6 +15,9 @@ public class CarController : MonoBehaviour
     public Button resetButton;
     public TextMeshProUGUI resetButtonText;
     public int raceRequiredTracks;
+    public GameObject timer;
+    public GameObject timerLL;
+
 
     private Rigidbody rb;
     private Transform[] wheelTransforms = null; //wheels transforms
@@ -158,6 +161,18 @@ public class CarController : MonoBehaviour
 
             //Lap Done?
             if (trackName.Equals(startTrack) && iteratedTracks.Count == raceRequiredTracks) {
+                //Lap Time
+                var timerL = timer.GetComponent<Timer>();
+                var timerLl = timerLL.GetComponent<Timer>();
+
+                timerLl.seconds = Convert.ToInt32(timerL.GetRemainingSeconds());
+                timerLl.StartTimer();
+
+                timerL.seconds = 0;
+                timerL.StartTimer();
+
+
+                //DisplayFormattedTime(seconds)
                 iteratedTracks.Clear();
                 lapsDone++;
             }
@@ -196,6 +211,7 @@ public class CarController : MonoBehaviour
         button.interactable = true;
         button.image.color = color;
     }
+
     void MakeButtonTextVisible(TextMeshProUGUI buttonText, Color color)
     {
         buttonText.color = color;
