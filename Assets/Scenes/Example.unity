@@ -4061,7 +4061,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 614435274}
-  m_LocalRotation: {x: 0.11581796, y: -0.703579, z: 0.11790402, w: 0.6911305}
+  m_LocalRotation: {x: 0.115817964, y: -0.703579, z: 0.11790404, w: 0.6911305}
   m_LocalPosition: {x: 3.170001, y: 3.901114, z: 17.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4104,6 +4104,7 @@ MonoBehaviour:
   acceleration: 10
   turningSpeed: 100
   brakeStrength: 100
+  requireLaps: 1
   resetButton: {fileID: 0}
   resetButtonText: {fileID: 0}
   raceRequiredTracks: 0
@@ -4316,6 +4317,7 @@ MonoBehaviour:
   acceleration: 10
   turningSpeed: 100
   brakeStrength: 100
+  requireLaps: 1
   resetButton: {fileID: 1765674808}
   resetButtonText: {fileID: 37048068}
   raceRequiredTracks: 0
@@ -11215,6 +11217,7 @@ MonoBehaviour:
   acceleration: 100
   turningSpeed: 100
   brakeStrength: 50
+  requireLaps: 2
   resetButton: {fileID: 1765674808}
   resetButtonText: {fileID: 37048068}
   raceRequiredTracks: 23
@@ -12627,6 +12630,7 @@ MonoBehaviour:
   acceleration: 10
   turningSpeed: 100
   brakeStrength: 100
+  requireLaps: 1
   resetButton: {fileID: 0}
   resetButtonText: {fileID: 0}
   raceRequiredTracks: 0
@@ -13847,6 +13851,7 @@ MonoBehaviour:
   acceleration: 10
   turningSpeed: 100
   brakeStrength: 100
+  requireLaps: 1
   resetButton: {fileID: 0}
   resetButtonText: {fileID: 0}
   raceRequiredTracks: 0
@@ -14114,7 +14119,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2121750342}
-  m_LocalRotation: {x: 0.11581796, y: -0.703579, z: 0.11790402, w: 0.6911305}
+  m_LocalRotation: {x: 0.115817964, y: -0.703579, z: 0.11790404, w: 0.6911305}
   m_LocalPosition: {x: 3.170001, y: 3.901114, z: 17.64}
   m_LocalScale: {x: 2.1150858, y: 2.1150858, z: -3.0873907}
   m_ConstrainProportionsScale: 0

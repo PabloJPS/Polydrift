@@ -11,6 +11,7 @@ public class CarController : MonoBehaviour
     public float acceleration = 300f; // The acceleration of the car
     public float turningSpeed = 100f; // The speed at which the car turns
     public float brakeStrength = 100f; // The speed at which the car turns
+    public int requireLaps = 1; // Required Laps
     public Button resetButton;
     public TextMeshProUGUI resetButtonText;
     public int raceRequiredTracks;
@@ -18,6 +19,7 @@ public class CarController : MonoBehaviour
     private Rigidbody rb;
     private Transform[] wheelTransforms = null; //wheels transforms
     private HashSet<string> iteratedTracks = new HashSet<string>();
+    private int lapsDone = 0;
     private string startTrack;
     private bool raceFinished;
     private Color resetButtonColor;
@@ -43,6 +45,7 @@ public class CarController : MonoBehaviour
         raceFinished = false;
         hadAccident = false;
         outOfMap = false;
+        lapsDone = 0;
 
         wheelTransforms = new Transform[4];
         // Get the children of a GameObject
@@ -153,7 +156,13 @@ public class CarController : MonoBehaviour
             if (startTrack.Equals(string.Empty))
                 startTrack = trackName;
 
-            if (trackName.Equals(startTrack) && iteratedTracks.Count == raceRequiredTracks)
+            //Lap Done?
+            if (trackName.Equals(startTrack) && iteratedTracks.Count == raceRequiredTracks) {
+                iteratedTracks.Clear();
+                lapsDone++;
+            }
+
+            if (lapsDone == requireLaps)
                 RaceFinished();
         }
     }
