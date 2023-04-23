@@ -15,8 +15,8 @@ public class CarController : MonoBehaviour
     public Button resetButton;
     public TextMeshProUGUI resetButtonText;
     public int raceRequiredTracks;
-    public GameObject timer;
-    public GameObject timerLL;
+    public GameObject currentLapTimer;
+    public GameObject lastLapTimer;
 
 
     private Rigidbody rb;
@@ -162,14 +162,19 @@ public class CarController : MonoBehaviour
             //Lap Done?
             if (trackName.Equals(startTrack) && iteratedTracks.Count == raceRequiredTracks) {
                 //Lap Time
-                var timerL = timer.GetComponent<Timer>();
-                var timerLl = timerLL.GetComponent<Timer>();
+                var currentLapTimer = this.currentLapTimer.GetComponent<Timer>();
+                var lastLapTimer = this.lastLapTimer.GetComponent<Timer>();
+                
+                Console.WriteLine($"Current Lap time: {currentLapTimer.seconds}");
+                
+                lastLapTimer.seconds = Convert.ToInt32(currentLapTimer.GetRemainingSeconds());
+                lastLapTimer.StartTimer();
 
-                timerLl.seconds = Convert.ToInt32(timerL.GetRemainingSeconds());
-                timerLl.StartTimer();
+                currentLapTimer.seconds = 0;
+                currentLapTimer.StopTimer();
+                currentLapTimer.StartTimer();
 
-                timerL.seconds = 0;
-                timerL.StartTimer();
+                Console.WriteLine($"Last Lap time: {lastLapTimer.seconds}");
 
 
                 //DisplayFormattedTime(seconds)

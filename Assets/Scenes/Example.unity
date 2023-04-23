@@ -1886,7 +1886,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7793483502543733730, guid: cb029586b846fd344ac4a91d1c836896, type: 3}
       propertyPath: m_Name
-      value: TimerLL
+      value: LastLapTimer
       objectReference: {fileID: 0}
     - target: {fileID: 7793483502543733731, guid: cb029586b846fd344ac4a91d1c836896, type: 3}
       propertyPath: m_Pivot.x
@@ -4226,8 +4226,8 @@ MonoBehaviour:
   resetButton: {fileID: 0}
   resetButtonText: {fileID: 0}
   raceRequiredTracks: 0
-  timer: {fileID: 0}
-  timerLL: {fileID: 0}
+  currentLapTimer: {fileID: 0}
+  lastLapTimer: {fileID: 0}
 --- !u!1001 &648305336
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4441,8 +4441,8 @@ MonoBehaviour:
   resetButton: {fileID: 1765674808}
   resetButtonText: {fileID: 37048068}
   raceRequiredTracks: 0
-  timer: {fileID: 0}
-  timerLL: {fileID: 0}
+  currentLapTimer: {fileID: 0}
+  lastLapTimer: {fileID: 0}
 --- !u!1001 &696767849
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11345,8 +11345,8 @@ MonoBehaviour:
   resetButton: {fileID: 1765674808}
   resetButtonText: {fileID: 37048068}
   raceRequiredTracks: 23
-  timer: {fileID: 1768745542}
-  timerLL: {fileID: 1846767852}
+  currentLapTimer: {fileID: 1768745542}
+  lastLapTimer: {fileID: 1846767852}
 --- !u!1001 &1655153766
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12780,7 +12780,7 @@ PrefabInstance:
       objectReference: {fileID: 1768745545}
     - target: {fileID: 4102366135358455682, guid: acf8442650629f2439ee093a2db86ec4, type: 3}
       propertyPath: m_Name
-      value: Timer
+      value: CurrentLapTimer
       objectReference: {fileID: 0}
     - target: {fileID: 4102366135358455685, guid: acf8442650629f2439ee093a2db86ec4, type: 3}
       propertyPath: m_Pivot.x
@@ -12927,8 +12927,8 @@ MonoBehaviour:
   resetButton: {fileID: 0}
   resetButtonText: {fileID: 0}
   raceRequiredTracks: 0
-  timer: {fileID: 0}
-  timerLL: {fileID: 0}
+  currentLapTimer: {fileID: 0}
+  lastLapTimer: {fileID: 0}
 --- !u!1001 &1852610862
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14150,8 +14150,8 @@ MonoBehaviour:
   resetButton: {fileID: 0}
   resetButtonText: {fileID: 0}
   raceRequiredTracks: 0
-  timer: {fileID: 0}
-  timerLL: {fileID: 0}
+  currentLapTimer: {fileID: 0}
+  lastLapTimer: {fileID: 0}
 --- !u!1001 &2112233581
 PrefabInstance:
   m_ObjectHideFlags: 0
