@@ -25,7 +25,19 @@ public class WaypointMover : MonoBehaviour
         if (Vector3.Distance(transform.position,current.position) < distance) 
         {
             current = waypoints.GetNextWaypoint(current);
-            transform.LookAt(current);
+
+            // Calculate the direction to the next waypoint
+            Vector3 direction = current.position - transform.position;
+            direction.y = 0f; // Ignore the y-axis to prevent flipping
+
+            // Flip the direction if needed
+            if (Vector3.Dot(transform.forward, direction) < 0)
+            {
+                direction *= -1;
+            }
+
+            // Rotate towards the next waypoint
+            transform.LookAt(transform.position + direction);
         }
     }
 }
