@@ -16,13 +16,12 @@ public class WaypointMover : MonoBehaviour
         transform.position = current.position;
 
         current = waypoints.GetNextWaypoint(current);
-        transform.LookAt(current);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, current.position,moveSpeed);
+        transform.position = Vector3.MoveTowards(transform.position, current.position, moveSpeed);
         if (Vector3.Distance(transform.position,current.position) < distance) 
         {
             current = waypoints.GetNextWaypoint(current);
