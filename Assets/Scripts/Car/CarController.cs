@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using TMPro;
+using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -17,6 +18,8 @@ public class CarController : MonoBehaviour
     public int raceRequiredTracks;
     public GameObject currentLapTimer;
     public GameObject lastLapTimer;
+    public GameObject bestLapTimer;
+    public TextMeshProUGUI laps;
 
 
     private Rigidbody rb;
@@ -50,6 +53,9 @@ public class CarController : MonoBehaviour
         outOfMap = false;
         lapsDone = 0;
 
+        var laps = this.laps.GetComponent<TextMeshProUGUI>();
+        laps.text = "Laps: " + lapsDone + "/" + requireLaps;
+
         wheelTransforms = new Transform[4];
         // Get the children of a GameObject
         Transform parentTransform = gameObject.transform;
@@ -60,6 +66,8 @@ public class CarController : MonoBehaviour
             wheelTransforms[i] = childTransform;
         }
         rb = GetComponent<Rigidbody>();
+
+        this.bestLapTimer.SetActive(false);
     }
 
     private void Update()
@@ -84,7 +92,11 @@ public class CarController : MonoBehaviour
                 break;
             }
         }
+        if (Input.GetKey("f")){
 
+            
+
+        }
         // Calculate the acceleration of the ride based on vertical input, only if all wheels are on the ground
         float accelerationAmount =  allWheelsOnGround ? -verticalInput * acceleration * Time.deltaTime : 0;
 
@@ -161,14 +173,24 @@ public class CarController : MonoBehaviour
 
             //Lap Done?
             if (trackName.Equals(startTrack) && iteratedTracks.Count == raceRequiredTracks) {
+
+                this.bestLapTimer.SetActive(true);
                 //Lap Time
                 var currentLapTimer = this.currentLapTimer.GetComponent<Timer>();
                 var lastLapTimer = this.lastLapTimer.GetComponent<Timer>();
+                var bestLapTimer = this.bestLapTimer.GetComponent<Timer>();
                 
+
                 Console.WriteLine($"Current Lap time: {currentLapTimer.seconds}");
                 
                 lastLapTimer.seconds = Convert.ToInt32(currentLapTimer.GetRemainingSeconds());
                 lastLapTimer.StartTimer();
+
+                if(Convert.ToInt32(currentLapTimer.GetRemainingSeconds()) < Convert.ToInt32(bestLapTimer.GetRemainingSeconds()) || lapsDone == 0){
+
+                    bestLapTimer.seconds = Convert.ToInt32(currentLapTimer.GetRemainingSeconds());
+                    bestLapTimer.StopTimer();
+                }
 
                 currentLapTimer.seconds = 0;
                 currentLapTimer.StopTimer();
@@ -180,6 +202,9 @@ public class CarController : MonoBehaviour
                 //DisplayFormattedTime(seconds)
                 iteratedTracks.Clear();
                 lapsDone++;
+
+                var laps = this.laps.GetComponent<TextMeshProUGUI>();
+                laps.text = "Laps: " + lapsDone + "/" + requireLaps;
             }
 
             if (lapsDone == requireLaps)
