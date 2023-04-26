@@ -65,6 +65,7 @@ public class CarController : MonoBehaviour
             Transform childTransform = parentTransform.GetChild(i);
             wheelTransforms[i] = childTransform;
         }
+        lastLapTimer.gameObject.SetActive(false);
         rb = GetComponent<Rigidbody>();
 
         this.bestLapTimer.SetActive(false);
@@ -175,6 +176,9 @@ public class CarController : MonoBehaviour
             if (trackName.Equals(startTrack) && iteratedTracks.Count == raceRequiredTracks) {
 
                 this.bestLapTimer.SetActive(true);
+               
+                this.lastLapTimer.gameObject.SetActive(true);
+                
                 //Lap Time
                 var currentLapTimer = this.currentLapTimer.GetComponent<Timer>();
                 var lastLapTimer = this.lastLapTimer.GetComponent<Timer>();
@@ -184,6 +188,7 @@ public class CarController : MonoBehaviour
                 Console.WriteLine($"Current Lap time: {currentLapTimer.seconds}");
                 
                 lastLapTimer.seconds = Convert.ToInt32(currentLapTimer.GetRemainingSeconds());
+                lastLapTimer.StopTimer();
                 lastLapTimer.StartTimer();
 
                 if(Convert.ToInt32(currentLapTimer.GetRemainingSeconds()) < Convert.ToInt32(bestLapTimer.GetRemainingSeconds()) || lapsDone == 0){
